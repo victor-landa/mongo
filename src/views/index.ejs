@@ -1,0 +1,61 @@
+<% include partials/_header %>
+
+  <!-- <pre>
+    <%= tasks %>
+  </pre> -->
+
+  <div class="container">
+    <div class="row">
+      <!-- FORM -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <form action="/add" method="POST">
+              <div class="form-group">
+                <input type="text" name="title" placeholder="Insert the name of the band" class="form-control">
+              </div>
+              <div class="form-group">
+                <textarea name="description" cols="80" class="form-control" placeholder="Insert album's name"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                Add
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- LIST -->
+      <div class="col-md-8">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Nombre</th>
+              <th>Álbum</th>
+              <th>Operation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i < tasks.length; i++){ %>
+              <tr>
+                <td><%= i + 1 %></td>
+                <td><%= tasks[i].title %></td>
+                <td><%= tasks[i].description %></td>
+                <td>
+                  <a href="/turn/<%= tasks[i]._id %>" 
+                    class="btn <%= tasks[i].status ? 'btn-success' : 'btn-dark'  %>">
+                    <!-- Available -->
+                    <%= tasks[i].status ? 'Available' : 'Sold out' %>
+                  </a>
+                  <a href="/delete/<%= tasks[i]._id %>" class="btn btn-danger">Delete</a>
+                  <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">Edit</a>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<% include partials/_footer %>
