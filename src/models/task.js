@@ -10,4 +10,4 @@ const TaskSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('tasks', TaskSchema);
+module.exports = mongoose.model('album', TaskSchema);
